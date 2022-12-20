@@ -1,0 +1,117 @@
+$primaryColor: #047857;
+
+.flex {
+    display: flex;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.flex-column {
+    @extend .flex;
+    @extend .column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+// `spaced-{direction}-{size}`
+// direction: h (horizontal), v (vertical), t (top) etc.
+// size: (unspecified = medium), s (small), l (large) etc.
+$margins: (
+    "-xs": 4px,
+    "-s": 8px,
+    "": 16px,
+    "-m": 16px,
+    "-l": 24px,
+    "-xl": 32px,
+    "-xxl": 40px,
+);
+$directions: (
+    "-l": "left",
+    "-r": "right",
+    "-b": "bottom",
+    "-t": "top",
+);
+
+@each $prefix, $space in $margins {
+    @each $shortcut, $direction in $directions {
+        .spaced#{$shortcut}#{$prefix} {
+            margin-#{$direction}: $space;
+        }
+    }
+    .spaced-v#{$prefix}{
+        @extend .spaced-t#{$prefix};
+        @extend .spaced-b#{$prefix};
+    }
+    .spaced-h#{$prefix}{
+        @extend .spaced-l#{$prefix};
+        @extend .spaced-r#{$prefix};
+    }
+    .spaced-all#{$prefix}{
+        @extend .spaced-v#{$prefix};
+        @extend .spaced-h#{$prefix};
+    }
+}
+
+.sign-on-container {
+  width: 460px;
+  height: auto;
+  background-color: white;
+  border: 1px solid rgba(100, 116, 139, .2);
+  border-radius: 5px;
+  padding: 24px;
+
+  .form-container {
+    p {
+        font-weight: 200;
+    }
+  }
+}
+
+.form-group {
+    @extend .flex-column;
+    margin-bottom: 8px;
+
+    input {
+        font-size: 20px;
+    }
+
+    label {
+        font-weight: 500;
+    }
+}
+
+.sign-switch-anchor {
+    text-decoration: none;
+    color: $primaryColor;
+    font-weight: 500;
+}

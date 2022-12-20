@@ -1,0 +1,51 @@
+<div class="sign-on-container">
+  <app-logo></app-logo>
+  <div class="form-container spaced-t-l">
+    <h2>Sign Up</h2>
+    <p>We’ll get you up and running so you can verify your personal information and customize your account</p>
+    <app-google-button [text]="'Sign Up with Google'"></app-google-button>
+    <app-sign-method-separator [value]="'or sign up with'"></app-sign-method-separator>
+    <form class="spaced-t-l flex-column" [formGroup]="signup" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>First Name</label>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="surname">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <mat-form-field>
+          <mat-label>Email Address</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" type="password"
+            formControlName="password">
+          <button type="button" mat-icon-button matSuffix (click)="togglePasswordVisibility($event)"
+            [attr.aria-label]="'Hide password'">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </form>
+    <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="!signup.valid">Sign
+      Up</button>
+  </div>
+  <p class="text-center spaced-t-xl">Already have an Account? <span
+      (click)="signUpMode=false; signUpModeChange.emit(signUpMode)"
+      class="sign-switch-anchor pointer">
+      Login here</span>
+  </p>
+</div>

@@ -1,0 +1,36 @@
+<div class="sign-on-container">
+  <app-logo></app-logo>
+  <div class="form-container spaced-t-l">
+    <h2>Login</h2>
+    <p>Welcome back. Enter your credentials to access your account</p>
+    <form class="spaced-t-l flex-column" [formGroup]="signin" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Email Address</label>
+        <mat-form-field>
+          <mat-label>Email Address</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" type="password"
+            formControlName="password">
+          <button type="button" mat-icon-button matSuffix (click)="togglePasswordVisibility($event)"
+            [attr.aria-label]="'Hide password'">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </form>
+    <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="!signin.valid">Login</button>
+    <app-sign-method-separator [value]="'or sign in with'"></app-sign-method-separator>
+    <app-google-button></app-google-button>
+    <p class="text-center spaced-t-xl">Don't have an account? <span
+        (click)="signUpMode=true; signUpModeChange.emit(signUpMode)"
+        class="sign-switch-anchor pointer">
+        Sign up here</span>
+    </p>
+  </div>
+</div>
