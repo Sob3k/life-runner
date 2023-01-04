@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: "app-sign-on",
@@ -6,4 +6,5 @@ import { Component } from "@angular/core";
 })
 export class SignOnComponent {
   signUpMode = false;
+  @Output() isLoggedChange = new EventEmitter<boolean>();
 }

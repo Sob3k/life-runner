@@ -1,0 +1,32 @@
+.sidemenu-container {
+  height: 100vh;
+
+  .menu-container{
+    flex: 1;
+    .logo-img {
+      width: 36px;
+    }
+  }
+
+  .active {
+    background-color: #E7EAEE;
+  }
+
+  .links {
+    gap: 8px;
+    .nav-link {
+      padding: 8px;
+      mat-icon {
+        color: #191D23;
+      }
+    }
+  }
+
+  hr {
+    width: 60px;
+  }
+
+  .profile-container {
+    margin-bottom: 60px;
+  }
+}

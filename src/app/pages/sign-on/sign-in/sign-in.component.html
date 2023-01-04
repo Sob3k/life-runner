@@ -23,8 +23,9 @@
           </button>
         </mat-form-field>
       </div>
+      <button mat-raised-button color="primary" type="submit" class="full-width"
+        [disabled]="!signin.valid">Login</button>
     </form>
-    <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="!signin.valid">Login</button>
     <app-sign-method-separator [value]="'or sign in with'"></app-sign-method-separator>
     <app-google-button></app-google-button>
     <p class="text-center spaced-t-xl">Don't have an account? <span

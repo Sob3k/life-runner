@@ -1,1 +1,2 @@
-<app-sign-on class="full-width flex-center"></app-sign-on>
+<app-sign-on *ngIf="!isLogged" (isLoggedChange)="isLogged=$event" class="full-width flex-center"></app-sign-on>
+<app-main-container *ngIf="isLogged"></app-main-container>

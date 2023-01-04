@@ -10,10 +10,12 @@ export class SignInComponent {
   hide = true;
   @Input() signUpMode = false;
   @Output() signUpModeChange = new EventEmitter<boolean>();
+  @Output() isLoggedChange = new EventEmitter<boolean>();
   signin = this.fb.group({
     email: ["", Validators.email],
     password: ["", Validators.required]
   })
+
 
   constructor(
     private fb: FormBuilder
@@ -21,6 +23,7 @@ export class SignInComponent {
 
   onSubmit() {
     console.log("on submit logic");
+    this.isLoggedChange.emit(true);
   }
 
   togglePasswordVisibility(event: MouseEvent): void {
