@@ -1,4 +1,5 @@
 $primaryColor: #047857;
+$captionColor: #667085;
 
 .flex {
     display: flex;
@@ -114,4 +115,21 @@ $directions: (
     text-decoration: none;
     color: $primaryColor;
     font-weight: 500;
+}
+
+.caption {
+  color: $captionColor;
+  font-size: 14px;
+}
+
+.color-primary {
+  color: $primaryColor;
+}
+
+.page-container {
+  overflow: hidden;
+}
+
+.page-title {
+  padding: 16px;
 }

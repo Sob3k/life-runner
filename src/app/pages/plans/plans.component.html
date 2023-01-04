@@ -1,1 +1,9 @@
-<p>plans works!</p>
+<div class="page-container">
+  <div class="page-title">
+    <h3>Plans</h3>
+    <p class="caption">Select your plan and choose the best way for you for your running training routine</p>
+  </div>
+  <div class="plans">
+    <app-plan-card *ngFor="let plan of plans" [plan]="plan" [selected]="selectedPlanId===plan.id"></app-plan-card>
+  </div>
+</div>

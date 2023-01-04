@@ -1,0 +1,18 @@
+<div class="plan-card flex-column">
+  <img
+    [src]="plan.imgUrl"
+    alt="Plan image" class="plan-image">
+  <div class="tags spaced-v-s flex align-center">
+    <app-status-indicator *ngFor="let tag of plan.tags" class="tag" [message]="tag"
+      [status]="'normal'"></app-status-indicator>
+  </div>
+  <div class="description-container">
+    <h4>{{plan.name}}</h4>
+    <p class="color-primary">{{plan.length}}</p>
+    <p class="description">{{plan.description}}</p>
+    <p class="caption">Join {{plan.membersNumber}} members!</p>
+  </div>
+  <button mat-raised-button color="primary" class="plan-button" [disabled]="selected">
+    {{selected ? 'Selected' : 'Select Plan'}}
+  </button>
+</div>

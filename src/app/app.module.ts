@@ -13,9 +13,13 @@ import { PlansComponent } from "./pages/plans/plans.component";
 import { SignInComponent } from "./pages/sign-on/sign-in/sign-in.component";
 import { SignOnComponent } from "./pages/sign-on/sign-on.component";
 import { SignUpComponent } from "./pages/sign-on/sign-up/sign-up.component";
+import { GoogleButtonComponent } from "./shared/components/google-button/google-button.component";
 import { LogoComponent } from "./shared/components/logo/logo.component";
-import { GoogleButtonComponent } from "./shared/google-button/google-button.component";
-import { SignMethodSeparatorComponent } from "./shared/sign-method-separator/sign-method-separator.component";
+import { ProfileComponent } from "./shared/components/profile/profile.component";
+import { SignMethodSeparatorComponent } from "./shared/components/sign-method-separator/sign-method-separator.component";
+import { SettingsComponent } from './pages/settings/settings.component';
+import { PlanCardComponent } from './pages/plans/plan-card/plan-card.component';
+import { StatusIndicatorComponent } from './shared/components/status-indicator/status-indicator.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { SignMethodSeparatorComponent } from "./shared/sign-method-separator/sig
     SidemenuComponent,
     DashboardComponent,
     HistoryComponent,
-    PlansComponent
+    PlansComponent,
+    ProfileComponent,
+    SettingsComponent,
+    PlanCardComponent,
+    StatusIndicatorComponent
   ],
   imports: [
     BrowserModule,

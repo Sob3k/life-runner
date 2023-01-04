@@ -88,7 +88,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatChipsModule,
     MatTooltipModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule,
+    MatCardModule,
   ],
   providers: [
     MatDatepickerModule,

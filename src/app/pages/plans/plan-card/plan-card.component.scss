@@ -1,0 +1,26 @@
+.plan-card {
+  width: 350px;
+  margin: 8px 0;
+  height: auto;
+
+  .plan-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .tags {
+    gap: 24px;
+    padding: 0 16px;
+    .tag {
+      flex: 1;
+    }
+  }
+
+  .description-container {
+    padding: 0 16px;
+  }
+  .plan-button {
+    width: 95%;
+    margin: 0 auto;
+  }
+}

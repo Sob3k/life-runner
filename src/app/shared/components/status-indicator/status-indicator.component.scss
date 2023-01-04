@@ -1,0 +1,25 @@
+.status {
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+  width: auto;
+
+  span {
+    white-space: pre;
+  }
+}
+
+.ok {
+  background-color: #ECFDF3;
+  color: #027A48;
+}
+
+.normal {
+  background-color: #e0dcdc;
+  color: #3e4957;
+}
+
+.error {
+  background-color: #FBC7C7;
+  color: #9c4e4e;
+}

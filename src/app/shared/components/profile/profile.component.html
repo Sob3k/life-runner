@@ -1,0 +1,14 @@
+<img src="assets/images/avatar.jpg" class="avatar spaced-t-l pointer" alt="Avatar" [matMenuTriggerFor]="profileMenu">
+<mat-menu #profileMenu="matMenu" xPosition="after">
+  <div class="flex spaced-h-s align-center">
+    <img src="assets/images/avatar.jpg" class="avatar" alt="Avatar">
+    <div class="flex-column spaced-l-s profile-name">
+      <p>Olivia Rhye</p>
+      <p class="caption">olivia@untitledui.com</p>
+    </div>
+  </div>
+  <hr>
+  <button mat-menu-item>Settings</button>
+  <hr>
+  <button mat-menu-item>Logout</button>
+</mat-menu>
