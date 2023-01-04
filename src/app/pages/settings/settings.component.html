@@ -1,1 +1,45 @@
-<p>settings works!</p>
+<div class="page-container">
+  <div class="page-title">
+    <h3>Settings</h3>
+    <p class="caption">Change your account data</p>
+  </div>
+  <div class="settings-form">
+    <form class="spaced-t-l flex-column" [formGroup]="settings" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>First Name</label>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="surname">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <mat-form-field>
+          <mat-label>Email Address</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" type="password"
+            formControlName="password">
+          <button type="button" mat-icon-button matSuffix (click)="togglePasswordVisibility($event)"
+            [attr.aria-label]="'Hide password'">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="!settings.valid">Save
+        changes</button>
+    </form>
+  </div>
+</div>

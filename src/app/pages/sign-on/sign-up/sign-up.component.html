@@ -39,9 +39,9 @@
           </button>
         </mat-form-field>
       </div>
+      <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="!signup.valid">Sign
+        Up</button>
     </form>
-    <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="!signup.valid">Sign
-      Up</button>
   </div>
   <p class="text-center spaced-t-xl">Already have an Account? <span
       (click)="signUpMode=false; signUpModeChange.emit(signUpMode)"

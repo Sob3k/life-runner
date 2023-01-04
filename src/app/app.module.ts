@@ -9,7 +9,9 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { HistoryComponent } from "./pages/history/history.component";
 import { MainContainerComponent } from "./pages/main-container/main-container.component";
 import { SidemenuComponent } from "./pages/main-container/sidemenu/sidemenu.component";
+import { PlanCardComponent } from "./pages/plans/plan-card/plan-card.component";
 import { PlansComponent } from "./pages/plans/plans.component";
+import { SettingsComponent } from "./pages/settings/settings.component";
 import { SignInComponent } from "./pages/sign-on/sign-in/sign-in.component";
 import { SignOnComponent } from "./pages/sign-on/sign-on.component";
 import { SignUpComponent } from "./pages/sign-on/sign-up/sign-up.component";
@@ -17,9 +19,7 @@ import { GoogleButtonComponent } from "./shared/components/google-button/google-
 import { LogoComponent } from "./shared/components/logo/logo.component";
 import { ProfileComponent } from "./shared/components/profile/profile.component";
 import { SignMethodSeparatorComponent } from "./shared/components/sign-method-separator/sign-method-separator.component";
-import { SettingsComponent } from './pages/settings/settings.component';
-import { PlanCardComponent } from './pages/plans/plan-card/plan-card.component';
-import { StatusIndicatorComponent } from './shared/components/status-indicator/status-indicator.component';
+import { StatusIndicatorComponent } from "./shared/components/status-indicator/status-indicator.component";
 
 @NgModule({
   declarations: [
