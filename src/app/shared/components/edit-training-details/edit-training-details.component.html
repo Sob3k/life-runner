@@ -1,0 +1,39 @@
+<h3 mat-dialog-title class="text-center">Edit training</h3>
+<div class="edit-training-form" mat-dialog-content>
+  <form class="spaced-t-l flex-column" [formGroup]="dayPlan" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Status</label>
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option *ngFor="let status of statuses" [value]="status">
+            {{status}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <mat-form-field>
+        <mat-label>Enter your notes</mat-label>
+        <textarea matInput
+          formControlName="notes"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="5"
+          cdkAutosizeMaxRows="5">
+        </textarea>
+        <button type="button" mat-icon-button matPrefix
+          (click)="recognizeSpeech()"
+          [attr.aria-label]="'Recognize Speech'">
+          <mat-icon>mic</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="!dayPlan.valid"
+        cdkFocusInitial>Save
+        changes</button>
+    </div>
+  </form>
+</div>

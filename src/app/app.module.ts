@@ -20,6 +20,8 @@ import { LogoComponent } from "./shared/components/logo/logo.component";
 import { ProfileComponent } from "./shared/components/profile/profile.component";
 import { SignMethodSeparatorComponent } from "./shared/components/sign-method-separator/sign-method-separator.component";
 import { StatusIndicatorComponent } from "./shared/components/status-indicator/status-indicator.component";
+import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
+import { EditTrainingDetailsComponent } from './shared/components/edit-training-details/edit-training-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { StatusIndicatorComponent } from "./shared/components/status-indicator/s
     ProfileComponent,
     SettingsComponent,
     PlanCardComponent,
-    StatusIndicatorComponent
+    StatusIndicatorComponent,
+    WeekdayStatusPipe,
+    EditTrainingDetailsComponent
   ],
   imports: [
     BrowserModule,
