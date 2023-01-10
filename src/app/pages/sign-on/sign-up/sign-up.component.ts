@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import { Signup } from "src/app/models/auth";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-sign-up",
@@ -14,15 +16,16 @@ export class SignUpComponent {
     name: ["", Validators.required],
     surname: ["", Validators.required],
     email: ["", Validators.email],
-    password: ["", Validators.required],
+    password: ["", [Validators.required, Validators.minLength(6)]],
   })
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private auth: AuthService,
   ) { }
 
   onSubmit() {
-    console.log("on submit logic");
+    this.auth.emailSignUp(this.signup.value as Signup);
   }
 
   togglePasswordVisibility(event: MouseEvent): void {

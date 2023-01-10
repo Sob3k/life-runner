@@ -1,9 +1,12 @@
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireDatabaseModule } from "@angular/fire/compat/database";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { environment } from "./environments/environment";
 import { MaterialModule } from "./material.module";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { HistoryComponent } from "./pages/history/history.component";
@@ -15,13 +18,13 @@ import { SettingsComponent } from "./pages/settings/settings.component";
 import { SignInComponent } from "./pages/sign-on/sign-in/sign-in.component";
 import { SignOnComponent } from "./pages/sign-on/sign-on.component";
 import { SignUpComponent } from "./pages/sign-on/sign-up/sign-up.component";
+import { EditTrainingDetailsComponent } from "./shared/components/edit-training-details/edit-training-details.component";
 import { GoogleButtonComponent } from "./shared/components/google-button/google-button.component";
 import { LogoComponent } from "./shared/components/logo/logo.component";
 import { ProfileComponent } from "./shared/components/profile/profile.component";
 import { SignMethodSeparatorComponent } from "./shared/components/sign-method-separator/sign-method-separator.component";
 import { StatusIndicatorComponent } from "./shared/components/status-indicator/status-indicator.component";
 import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
-import { EditTrainingDetailsComponent } from './shared/components/edit-training-details/edit-training-details.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { EditTrainingDetailsComponent } from './shared/components/edit-training-
     AppRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

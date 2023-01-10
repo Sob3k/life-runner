@@ -1,14 +1,15 @@
-<img src="assets/images/avatar.jpg" class="avatar spaced-t-l pointer" alt="Avatar" [matMenuTriggerFor]="profileMenu">
+<img [src]="user.photoURL ? user.photoURL : 'assets/images/avatar.jpg'" class="avatar spaced-t-l pointer" alt="Avatar"
+  [matMenuTriggerFor]="profileMenu">
 <mat-menu #profileMenu="matMenu" xPosition="after">
   <div class="flex spaced-h-s align-center">
-    <img src="assets/images/avatar.jpg" class="avatar" alt="Avatar">
+    <img [src]="user.photoURL ? user.photoURL : 'assets/images/avatar.jpg'" class="avatar" alt="Avatar">
     <div class="flex-column spaced-l-s profile-name">
-      <p>Olivia Rhye</p>
-      <p class="caption">olivia@untitledui.com</p>
+      <p>{{user.displayName}}</p>
+      <p class="caption">{{user.email}}</p>
     </div>
   </div>
   <hr>
   <a mat-menu-item routerLink="settings">Settings</a>
   <hr>
-  <a mat-menu-item>Logout</a>
+  <a mat-menu-item (click)="signOut()">Logout</a>
 </mat-menu>

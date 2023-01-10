@@ -17,6 +17,6 @@
   <hr>
   <div class="profile-container flex-column align-center spaced-t-m">
     <span class="caption">Profile</span>
-    <app-profile></app-profile>
+    <app-profile *ngIf="auth.user.value"></app-profile>
   </div>
 </div>

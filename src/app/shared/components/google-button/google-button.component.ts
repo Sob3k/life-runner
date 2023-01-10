@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-google-button",
@@ -7,4 +8,12 @@ import { Component, Input } from "@angular/core";
 })
 export class GoogleButtonComponent {
   @Input() text = "Google";
+
+  constructor(
+    private auth: AuthService
+  ) { }
+
+  signInWithGoogle() {
+    this.auth.signWithGoogleAccount();
+  }
 }
