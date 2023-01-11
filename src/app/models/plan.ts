@@ -5,5 +5,4 @@ export interface Plan {
   name: string;
   length: string;
   description: string;
-  membersNumber: number;
 }

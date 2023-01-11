@@ -3,7 +3,8 @@
     <h3>Plans</h3>
     <p class="caption">Select your plan and choose the best way for you for your running training routine</p>
   </div>
-  <div class="plans">
+  <div class="plans" *ngIf="isLoaded">
     <app-plan-card *ngFor="let plan of plans" [plan]="plan" [selected]="selectedPlanId===plan.id"></app-plan-card>
   </div>
+  <app-spinner class="spinner-overview" *ngIf="!isLoaded"></app-spinner>
 </div>

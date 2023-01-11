@@ -10,9 +10,9 @@
     <h4>{{plan.name}}</h4>
     <p class="color-primary">{{plan.length}}</p>
     <p class="description">{{plan.description}}</p>
-    <p class="caption">Join {{plan.membersNumber}} members!</p>
+    <p class="caption">Join other members!</p>
   </div>
-  <button mat-raised-button color="primary" class="plan-button" [disabled]="selected">
+  <button mat-raised-button color="primary" class="plan-button" [disabled]="selected" (click)="selectPlan(plan.id)">
     {{selected ? 'Selected' : 'Select Plan'}}
   </button>
 </div>

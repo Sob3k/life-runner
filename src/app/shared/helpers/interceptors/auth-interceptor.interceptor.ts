@@ -6,7 +6,7 @@ import { exhaustMap, Observable, take } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 
 @Injectable()
-export class AuthInterceptorInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private auth: AuthService,

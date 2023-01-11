@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireDatabaseModule } from "@angular/fire/compat/database";
@@ -23,7 +23,9 @@ import { GoogleButtonComponent } from "./shared/components/google-button/google-
 import { LogoComponent } from "./shared/components/logo/logo.component";
 import { ProfileComponent } from "./shared/components/profile/profile.component";
 import { SignMethodSeparatorComponent } from "./shared/components/sign-method-separator/sign-method-separator.component";
+import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
 import { StatusIndicatorComponent } from "./shared/components/status-indicator/status-indicator.component";
+import { AuthInterceptor } from "./shared/helpers/interceptors/auth-interceptor.interceptor";
 import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
 
 @NgModule({
@@ -45,7 +47,8 @@ import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
     PlanCardComponent,
     StatusIndicatorComponent,
     WeekdayStatusPipe,
-    EditTrainingDetailsComponent
+    EditTrainingDetailsComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,9 @@ import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

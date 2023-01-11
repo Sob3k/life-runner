@@ -8,7 +8,6 @@ export const plans: Plan[] = [
     name: "Run your first 10 kilometers",
     length: "10 Week Course",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, elit nibh et nisl, pellentesque scelerisque faucibus facilisis at. Placerat morbi sem viverra diam lectus odio orci...",
-    membersNumber: 867,
   },
   {
     id: 2,
@@ -17,7 +16,6 @@ export const plans: Plan[] = [
     name: "Prepare for half-marathon",
     length: "18 Week Course",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, elit nibh et nisl, pellentesque scelerisque faucibus facilisis at. Placerat morbi sem viverra diam lectus odio orci...",
-    membersNumber: 437,
   },
   {
     id: 3,
@@ -26,6 +24,5 @@ export const plans: Plan[] = [
     name: "Become a marathon runner",
     length: "24 Week Course",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, elit nibh et nisl, pellentesque scelerisque faucibus facilisis at. Placerat morbi sem viverra diam lectus odio orci...",
-    membersNumber: 321,
   }
 ]

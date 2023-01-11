@@ -1,0 +1,23 @@
+@import "../../../../common.scss";
+
+.spinner-container{
+  width: 100px;
+  height: 100px;
+  .loading {
+    &::after {
+      content: "";
+      width: 36px;
+      height: 36px;
+      border: 8px solid #eee;
+      border-top-color: $primaryColor;
+      border-radius: 50%;
+      animation: spinner 1.25s ease infinite;
+
+      @keyframes spinner {
+        to {
+            transform: rotate(1turn);
+        }
+    }
+    }
+  }
+}
