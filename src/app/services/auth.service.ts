@@ -17,7 +17,6 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private ng: NgZone,
     private router: Router,
-
   ) {
     this.afAuth.authState.subscribe(async user => {
       if (user) {
@@ -49,7 +48,7 @@ export class AuthService {
       await this.afAuth.createUserWithEmailAndPassword(email, password),
       (await this.afAuth.currentUser)?.updateProfile({
         displayName: `${name} ${surname}`,
-      })
+      }),
     ])
   }
 

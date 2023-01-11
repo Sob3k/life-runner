@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
     this.user = this.auth.user.value as User;
   }
 
-  signOut() {
-    this.auth.signOut();
+  async signOut() {
+    await this.auth.signOut();
   }
 }

@@ -24,8 +24,11 @@ export class SignUpComponent {
     private auth: AuthService,
   ) { }
 
-  onSubmit() {
-    this.auth.emailSignUp(this.signup.value as Signup);
+  async onSubmit() {
+    try {
+      await this.auth.emailSignUp(this.signup.value as Signup);
+    } catch { /* empty */ }
+
   }
 
   togglePasswordVisibility(event: MouseEvent): void {

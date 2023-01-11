@@ -8,7 +8,7 @@
     <mat-icon fontIcon="arrow_circle_right" class="color-primary pointer" (click)="loadNextWeek()"></mat-icon>
   </div>
   <ng-container *ngIf="isLoaded">
-    <table class="spaced-t-l" mat-table *ngIf="weekPlan" [dataSource]="weekPlan.trainings">
+    <table class="spaced-t-l" mat-table *ngIf="weekPlan && !emptyState" [dataSource]="weekPlan.trainings">
       <ng-container matColumnDef="weekday">
         <th mat-header-cell *matHeaderCellDef> Weekday </th>
         <td mat-cell *matCellDef="let element">
@@ -60,6 +60,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <p *ngIf="emptyState" class="flex-center">Choose your plan and start running with us!</p>
   </ng-container>
   <app-spinner class="spinner-overview" *ngIf="!isLoaded"></app-spinner>
 </div>

@@ -9,7 +9,6 @@ import { AppComponent } from "./app.component";
 import { environment } from "./environments/environment";
 import { MaterialModule } from "./material.module";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
-import { HistoryComponent } from "./pages/history/history.component";
 import { MainContainerComponent } from "./pages/main-container/main-container.component";
 import { SidemenuComponent } from "./pages/main-container/sidemenu/sidemenu.component";
 import { PlanCardComponent } from "./pages/plans/plan-card/plan-card.component";
@@ -40,7 +39,6 @@ import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
     MainContainerComponent,
     SidemenuComponent,
     DashboardComponent,
-    HistoryComponent,
     PlansComponent,
     ProfileComponent,
     SettingsComponent,

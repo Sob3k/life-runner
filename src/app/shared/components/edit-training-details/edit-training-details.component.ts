@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Subscription } from "rxjs";
 import { TrainingDay, TrainingDayStatus } from "src/app/models/week-plan";
+import { ApiService } from "src/app/services/api.service";
 import { SpeechRecognitionService } from "src/app/services/speech-recognition.service";
 
 @Component({
@@ -14,28 +15,31 @@ export class EditTrainingDetailsComponent implements OnDestroy {
   speechReconStarted = false;
   statuses: TrainingDayStatus[] = ["To do", "Free", "Done"];
   dayPlan = this.fb.group({
-    status: [this.data.status, Validators.required],
-    notes: [this.data.notes || ""]
+    status: [this.data.dayPlan.status, Validators.required],
+    notes: [this.data.dayPlan.notes || ""]
   })
   sub!: Subscription;
 
   constructor(
     public dialogRef: MatDialogRef<EditTrainingDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: TrainingDay,
+    @Inject(MAT_DIALOG_DATA) public data: { dayPlan: TrainingDay, weekNumber: number },
     private fb: FormBuilder,
     private speechRecognition: SpeechRecognitionService,
+    private api: ApiService,
   ) {
     this.speechRecognition.setupSpeechRecognition();
-    console.log(data);
   }
 
   ngOnDestroy(): void {
     this.closeSub();
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.closeSub();
-    console.log("on submit logic", this.dayPlan.value);
+    const { dayPlan, weekNumber } = this.data;
+    const trainingIndex = dayPlan.trainingId - weekNumber * 7;
+    await this.api.updateTrainingInfo(this.data.weekNumber, trainingIndex, this.dayPlan.value);
+    this.dialogRef.close();
   }
 
   recognizeSpeech() {

@@ -1,3 +1,5 @@
+import { TrainingPlan } from "./week-plan";
+
 export interface User {
   email: string | null;
   displayName: string | null;
@@ -9,6 +11,5 @@ export interface User {
 export interface UserData {
   uid: string;
   selectedPlan?: number;
-  currentPlan: null;
-  history: null;
+  currentPlan?: TrainingPlan;
 }

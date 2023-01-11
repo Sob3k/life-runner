@@ -15,20 +15,20 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ["weekday", "date", "status", "about", "actions"];
   isLoaded = false;
   weekNumber = 0;
+  emptyState = false;
 
   constructor(
     private dialog: MatDialog,
     private api: ApiService,
-  ) {
-    // const newPlan = new GeneratedPlan(1);
-    // console.log(newPlan.getPlan());
-  }
+  ) { }
 
   ngOnInit() {
     this.loadWeek();
     this.api.getCurrentPlanDetails().subscribe(planDetails => {
       if (planDetails)
         this.planDetails = planDetails;
+      if (!planDetails.weeksLength)
+        this.emptyState = true;
     })
   }
 

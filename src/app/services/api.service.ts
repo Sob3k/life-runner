@@ -3,7 +3,8 @@ import { AngularFireDatabase, AngularFireList } from "@angular/fire/compat/datab
 import { map } from "rxjs";
 import { Plan } from "../models/plan";
 import { UserData } from "../models/user";
-import { TrainingPlan, WeekPlan } from "../models/week-plan";
+import { TrainingDay, TrainingPlan, WeekPlan } from "../models/week-plan";
+import { GeneratedPlan } from "../shared/helpers/plans/plans-generator";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -34,7 +35,12 @@ export class ApiService {
   }
 
   updateUserSelectedPlan(selectedPlan: number) {
-    this.db.object<UserData>(`${this.usersPath}/${this.currentUserUid}`).update({ selectedPlan });
+    const newPlan = new GeneratedPlan(selectedPlan).getPlan();
+
+    return Promise.all([
+      this.db.object<UserData>(`${this.usersPath}/${this.currentUserUid}`).update({ selectedPlan }),
+      this.db.object<TrainingPlan>(`${this.usersPath}/${this.currentUserUid}/currentPlan/`).update(newPlan)
+    ]);
   }
 
   getCurrentPlanWeekTraining(week = 0) {
@@ -44,5 +50,9 @@ export class ApiService {
   getCurrentPlanDetails() {
     return this.db.object<TrainingPlan>(`${this.usersPath}/${this.currentUserUid}/currentPlan/`)
       .valueChanges().pipe(map(plan => { return { planId: plan?.planId, weeksLength: plan?.weeksLength } }));
+  }
+
+  updateTrainingInfo(weekNumber: number, trainingIndex: number, training: any) {
+    return this.db.object<TrainingDay>(`${this.usersPath}/${this.currentUserUid}/currentPlan/weeks/${weekNumber}/trainings/${trainingIndex}`).update(training);
   }
 }
