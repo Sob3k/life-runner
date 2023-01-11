@@ -18,6 +18,7 @@ import { SignInComponent } from "./pages/sign-on/sign-in/sign-in.component";
 import { SignOnComponent } from "./pages/sign-on/sign-on.component";
 import { SignUpComponent } from "./pages/sign-on/sign-up/sign-up.component";
 import { EditTrainingDetailsComponent } from "./shared/components/edit-training-details/edit-training-details.component";
+import { ErrorDialogComponent } from "./shared/components/error-dialog/error-dialog.component";
 import { GoogleButtonComponent } from "./shared/components/google-button/google-button.component";
 import { LogoComponent } from "./shared/components/logo/logo.component";
 import { ProfileComponent } from "./shared/components/profile/profile.component";
@@ -46,7 +47,8 @@ import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
     StatusIndicatorComponent,
     WeekdayStatusPipe,
     EditTrainingDetailsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,

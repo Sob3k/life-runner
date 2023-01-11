@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { Signup } from "src/app/models/auth";
 import { AuthService } from "src/app/services/auth.service";
+import { ErrorDialogComponent } from "src/app/shared/components/error-dialog/error-dialog.component";
 
 @Component({
   selector: "app-sign-up",
@@ -22,12 +24,16 @@ export class SignUpComponent {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
+    private dialog: MatDialog
   ) { }
 
   async onSubmit() {
     try {
       await this.auth.emailSignUp(this.signup.value as Signup);
-    } catch { /* empty */ }
+      await this.auth.addUser();
+    } catch {
+      this.dialog.open(ErrorDialogComponent, { data: { message: "Cannot create an account with supplied parameters" } })
+    }
 
   }
 

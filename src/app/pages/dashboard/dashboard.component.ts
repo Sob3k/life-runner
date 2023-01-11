@@ -33,13 +33,12 @@ export class DashboardComponent implements OnInit {
   }
 
   editTraining(dayPlan: TrainingDay) {
-    const dialogRef = this.dialog.open(EditTrainingDetailsComponent, {
+    this.dialog.open(EditTrainingDetailsComponent, {
       data: {
         dayPlan,
         weekNumber: this.weekNumber
       }
     });
-    dialogRef.afterClosed().subscribe(() => console.log("closed"));
   }
 
   loadWeek() {
@@ -47,7 +46,7 @@ export class DashboardComponent implements OnInit {
     this.api.getCurrentPlanWeekTraining(this.weekNumber).subscribe(weekPlan => {
       this.weekPlan = weekPlan;
       this.isLoaded = true;
-    });
+    })
   }
 
   loadPrevWeek() {

@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { Signin } from "src/app/models/auth";
 import { AuthService } from "src/app/services/auth.service";
+import { ErrorDialogComponent } from "src/app/shared/components/error-dialog/error-dialog.component";
 
 @Component({
   selector: "app-sign-in",
@@ -22,11 +24,16 @@ export class SignInComponent {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
+    private dialog: MatDialog
   ) { }
 
-  onSubmit() {
-    this.auth.emailSignIn(this.signin.value as Signin)
-    this.isLoggedChange.emit(true);
+  async onSubmit() {
+    try {
+      await this.auth.emailSignIn(this.signin.value as Signin)
+      this.isLoggedChange.emit(true);
+    } catch {
+      this.dialog.open(ErrorDialogComponent, { data: { message: "Invalid credentials" } })
+    }
   }
 
   togglePasswordVisibility(event: MouseEvent): void {

@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit {
   }
 
   async signOut() {
-    await this.auth.signOut();
+    try {
+      await this.auth.signOut();
+    } catch { /* empty */ }
   }
 }

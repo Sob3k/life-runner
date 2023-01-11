@@ -13,7 +13,10 @@ export class GoogleButtonComponent {
     private auth: AuthService
   ) { }
 
-  signInWithGoogle() {
-    this.auth.signWithGoogleAccount();
+  async signInWithGoogle() {
+    try {
+      await this.auth.signWithGoogleAccount();
+      await this.auth.addUser();
+    } catch { /* empty */ }
   }
 }

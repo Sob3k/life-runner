@@ -1,22 +1,25 @@
 import { Injectable, NgZone } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/compat/database";
 import { Router } from "@angular/router";
 import * as firebaseAuth from "firebase/auth";
 import { BehaviorSubject } from "rxjs";
 import { Signin, Signup } from "../models/auth";
 import { Settings } from "../models/settings";
-import { User } from "../models/user";
+import { User, UserData } from "../models/user";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
   user = new BehaviorSubject<User | null>(null);
+  usersRef: AngularFireList<UserData>;
 
   constructor(
     private afAuth: AngularFireAuth,
     private ng: NgZone,
     private router: Router,
+    private db: AngularFireDatabase,
   ) {
     this.afAuth.authState.subscribe(async user => {
       if (user) {
@@ -27,9 +30,12 @@ export class AuthService {
           email,
           photoURL,
           token: await user?.getIdToken(),
-        })
+        });
+        this.ng.run(() => this.router.navigateByUrl("/dashboard"));
+        this.db.database.goOnline();
       }
     });
+    this.usersRef = db.list("/users");
   }
 
   private async OAuthProvider(provider: firebaseAuth.GoogleAuthProvider) {
@@ -38,7 +44,6 @@ export class AuthService {
 
   // Google signin/singup
   async signWithGoogleAccount() {
-    this.ng.run(() => this.router.navigateByUrl("/dashboard"));
     return this.OAuthProvider(new firebaseAuth.GoogleAuthProvider);
   }
 
@@ -54,13 +59,20 @@ export class AuthService {
 
   async emailSignIn(signin: Signin) {
     const { email, password } = signin;
-    this.ng.run(() => this.router.navigateByUrl("/dashboard"));
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+    await this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
   async signOut() {
+    await this.afAuth.signOut();
     this.user.next(null);
-    return this.afAuth.signOut();
+    this.router.navigateByUrl("/");
+    this.db.database.goOffline();
+  }
+
+  async addUser() {
+    await this.usersRef.push({
+      uid: this.user.value?.uid || ""
+    });
   }
 
   async updateProfileInfo(settings: Settings) {
