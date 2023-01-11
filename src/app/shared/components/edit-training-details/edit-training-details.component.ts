@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Subscription } from "rxjs";
-import { DayPlan, TrainingDayStatus } from "src/app/models/week-plan";
+import { TrainingDay, TrainingDayStatus } from "src/app/models/week-plan";
 import { SpeechRecognitionService } from "src/app/services/speech-recognition.service";
 
 @Component({
@@ -21,11 +21,12 @@ export class EditTrainingDetailsComponent implements OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<EditTrainingDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DayPlan,
+    @Inject(MAT_DIALOG_DATA) public data: TrainingDay,
     private fb: FormBuilder,
     private speechRecognition: SpeechRecognitionService,
   ) {
     this.speechRecognition.setupSpeechRecognition();
+    console.log(data);
   }
 
   ngOnDestroy(): void {
@@ -51,7 +52,7 @@ export class EditTrainingDetailsComponent implements OnDestroy {
   }
 
   private closeSub() {
-    this.sub.unsubscribe();
+    if (this.sub) this.sub.unsubscribe();
     this.speechRecognition.stop();
   }
 }

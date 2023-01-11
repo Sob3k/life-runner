@@ -1,11 +1,6 @@
 <div class="page-container">
   <div class="page-title">
     <h3>Your history</h3>
-    <p class="caption">Week 14.10.2021-20.10.2021</p>
-  </div>
-  <div class="arrows spaced-l-m">
-    <mat-icon fontIcon="arrow_circle_left" class="color-primary pointer"></mat-icon>
-    <mat-icon fontIcon="arrow_circle_right" class="color-primary pointer"></mat-icon>
   </div>
   <table class="spaced-t-l" mat-table [dataSource]="weekPlan">
     <ng-container matColumnDef="weekday">
@@ -59,4 +54,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <mat-paginator [pageSizeOptions]="[7, 14, 21, 100]" aria-label="Select page size"></mat-paginator>
 </div>

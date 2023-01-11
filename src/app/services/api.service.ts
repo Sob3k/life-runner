@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from "@angular/fire/compat/datab
 import { map } from "rxjs";
 import { Plan } from "../models/plan";
 import { UserData } from "../models/user";
+import { TrainingPlan, WeekPlan } from "../models/week-plan";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -36,4 +37,12 @@ export class ApiService {
     this.db.object<UserData>(`${this.usersPath}/${this.currentUserUid}`).update({ selectedPlan });
   }
 
+  getCurrentPlanWeekTraining(week = 0) {
+    return this.db.object<WeekPlan>(`${this.usersPath}/${this.currentUserUid}/currentPlan/weeks/${week}`).valueChanges();
+  }
+
+  getCurrentPlanDetails() {
+    return this.db.object<TrainingPlan>(`${this.usersPath}/${this.currentUserUid}/currentPlan/`)
+      .valueChanges().pipe(map(plan => { return { planId: plan?.planId, weeksLength: plan?.weeksLength } }));
+  }
 }
