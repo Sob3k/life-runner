@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/compat/database";
-import { map, Subscription } from "rxjs";
+import { map, of, Subscription } from "rxjs";
 import { Plan } from "../models/plan";
 import { UserData } from "../models/user";
 import { TrainingDay, TrainingPlan, WeekPlan } from "../models/week-plan";
@@ -53,6 +53,7 @@ export class ApiService implements OnDestroy {
   }
 
   getCurrentPlanWeekTraining(week = 0) {
+    if (!this.currentUserUid) { return of(null) }
     return this.db.object<WeekPlan>(`${this.usersPath}/${this.currentUserUid}/currentPlan/weeks/${week}`).valueChanges();
   }
 

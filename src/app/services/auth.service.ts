@@ -39,7 +39,18 @@ export class AuthService {
   }
 
   private async OAuthProvider(provider: firebaseAuth.GoogleAuthProvider) {
-    await this.afAuth.signInWithPopup(provider)
+    const res = await this.afAuth.signInWithPopup(provider)
+    const uid = res.user?.uid || "";
+    let userIds: any[] = [];
+    this.usersRef.valueChanges().subscribe(async data => {
+      userIds = data.map(data => data.uid);
+      if (!userIds.includes(uid)) {
+        await this.usersRef.push({
+          uid,
+        });
+      }
+    });
+    return res;
   }
 
   // Google signin/singup

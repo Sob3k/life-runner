@@ -16,7 +16,6 @@ export class GoogleButtonComponent {
   async signInWithGoogle() {
     try {
       await this.auth.signWithGoogleAccount();
-      await this.auth.addUser();
     } catch { /* empty */ }
   }
 }
