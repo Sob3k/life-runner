@@ -27,6 +27,7 @@ import { SpinnerComponent } from "./shared/components/spinner/spinner.component"
 import { StatusIndicatorComponent } from "./shared/components/status-indicator/status-indicator.component";
 import { AuthInterceptor } from "./shared/helpers/interceptors/auth-interceptor.interceptor";
 import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { WeekdayStatusPipe } from "./shared/pipes/weekday-status.pipe";
     WeekdayStatusPipe,
     EditTrainingDetailsComponent,
     SpinnerComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

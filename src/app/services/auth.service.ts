@@ -17,10 +17,10 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private ng: NgZone,
     private router: Router,
     private db: AngularFireDatabase,
   ) {
+    this.afAuth.setPersistence("local");
     this.afAuth.authState.subscribe(async user => {
       if (user) {
         const { displayName, email, photoURL, uid } = user;
@@ -31,7 +31,6 @@ export class AuthService {
           photoURL,
           token: await user?.getIdToken(),
         });
-        this.ng.run(() => this.router.navigateByUrl("/dashboard"));
         this.db.database.goOnline();
       }
     });

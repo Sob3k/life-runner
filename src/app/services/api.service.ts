@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/compat/database";
-import { map, of, Subscription } from "rxjs";
+import { lastValueFrom, map, of, Subscription } from "rxjs";
 import { Plan } from "../models/plan";
 import { UserData } from "../models/user";
 import { TrainingDay, TrainingPlan, WeekPlan } from "../models/week-plan";
@@ -25,8 +25,8 @@ export class ApiService implements OnDestroy {
     this.plansRef = db.list(this.plansPath);
     this.usersRef = db.list(this.usersPath);
     this.currentUserUid = this.auth.user.value?.uid || "";
-    this.authSub = this.auth.user.subscribe(() => {
-      this.setCurrentUserId();
+    this.authSub = this.auth.user.subscribe(async () => {
+      this.currentUserUid = await this.setCurrentUserId();
     })
   }
 
@@ -66,17 +66,22 @@ export class ApiService implements OnDestroy {
     return this.db.object<TrainingDay>(`${this.usersPath}/${this.currentUserUid}/currentPlan/weeks/${weekNumber}/trainings/${trainingIndex}`).update(training);
   }
 
-  private setCurrentUserId() {
+  private async setCurrentUserId() {
     let userKeys: any[] = [];
     let users: any[] = [];
-    this.usersRef.snapshotChanges().subscribe(data => {
-      userKeys = data.map(data => data.key);
-      this.usersRef.valueChanges().subscribe(data => {
-        users = data.map(data => data.uid);
-        const index = users.indexOf(this.auth.user.value?.uid);
-        const currentUserId = userKeys[index];
-        this.currentUserUid = currentUserId;
+    return new Promise<string>((resolve, reject) => {
+
+      this.usersRef.snapshotChanges().subscribe(data => {
+        userKeys = data.map(data => data.key);
+        this.usersRef.valueChanges().subscribe(data => {
+          users = data.map(data => data.uid);
+          const index = users.indexOf(this.auth.user.value?.uid);
+          const currentUserId = userKeys[index];
+          this.currentUserUid = currentUserId;
+          resolve(currentUserId);
+        });
       });
-    });
+
+    })
   }
 }
